@@ -1,0 +1,2 @@
+GET https://dev.azure.com/{organization}/_apis/accesscontrollists/3e65f728-f8bc-4ecd-8764-7e378b19bfa7?descriptors=&recurse=true&includeExtendedInfo=True&api-version=7.2-preview.1
+Authorization: Basic :PAT

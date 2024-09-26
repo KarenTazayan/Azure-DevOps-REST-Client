@@ -1,0 +1,2 @@
+GET https://vssps.dev.azure.com/{organization}/_apis/graph/membershipstates/{subjectDescriptor}?api-version=7.2-preview.1
+Authorization: Basic :PAT

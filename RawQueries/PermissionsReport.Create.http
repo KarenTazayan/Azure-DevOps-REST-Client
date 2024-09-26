@@ -1,0 +1,9 @@
+POST https://dev.azure.com/{organization}/_apis/permissionsreport?api-version=7.1
+Authorization: Basic :PAT
+Content-Type: application/json
+
+{
+    "descriptors": [],
+    "reportName":  "PermissionsReport",
+    
+}

@@ -1,0 +1,2 @@
+GET https://dev.azure.com/{organization}/_apis/projects?api-version=7.2-preview.1
+Authorization: Basic :PAT
