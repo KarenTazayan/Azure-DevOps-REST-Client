@@ -10,7 +10,7 @@ namespace AzureDevOpsRESTClient
         [STAThread]
         static void Main()
         {
-            SyncfusionLicenseProvider.RegisterLicense("key");
+            SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXZcdXVURWZYVUB2XEM=");
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();

@@ -1,0 +1,2 @@
+GET https://vsaex.dev.azure.com/{organization}/_apis/userentitlements?$filter=name eq 'NAME'&api-version=7.1
+Authorization: Basic :PAT

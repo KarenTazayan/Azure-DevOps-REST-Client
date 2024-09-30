@@ -1,0 +1,8 @@
+PATCH https://vssps.dev.azure.com/{organization}/_apis/graph/users/aad.OTliNzFjMGYtMzJmMy0wYWU3LWFiMzQtNzlmZWQ3NGZhMzQ3?api-version=7.2-preview.1
+Authorization: Basic :PAT
+Content-Type: application/json
+
+{
+  "originId": "e34ba8db-9bd5-43f8-a4f5-2ce1c8a5f860",
+  "origin": "aad"  // The type of source provider for the origin identifier (ex:AD, AAD, MSA)
+}

@@ -9,12 +9,14 @@ namespace AzureDevOpsRESTClient
     {
         private readonly User _user;
         private readonly RestClient _restClient;
+        private readonly bool _useUserServicePrincipal;
         private Identity? _userIdentity;
 
-        public UserForm(User user, RestClient restClient)
+        public UserForm(User user, RestClient restClient, bool useUserUserServicePrincipal)
         {
             _user = user;
             _restClient = restClient;
+            _useUserServicePrincipal = useUserUserServicePrincipal;
             InitializeComponent();
         }
 
@@ -33,7 +35,7 @@ namespace AzureDevOpsRESTClient
 
         private async void UserEntitlementsTabPage_Enter(object? sender, EventArgs e)
         {
-            var userEntitlements = new UserEntitlements(_restClient);
+            var userEntitlements = new UserEntitlementsService(_restClient);
             var result = await userEntitlements.GetAll(_user.Descriptor);
             userEntitlementsTextBox.Text = result.IsSuccess ? result.Value : result.FailMessage;
         }
@@ -42,10 +44,13 @@ namespace AzureDevOpsRESTClient
         {
             userTabControl.Enabled = false;
             var identities = new IdentitiesService(_restClient);
-            var result = await identities.ReadIdentityByEmailAsString(_user.MailAddress);
+
+            var searchEmail = _useUserServicePrincipal ? _user.PrincipalName : _user.MailAddress;
+
+            var result = await identities.ReadIdentityByEmailAsString(searchEmail);
             identityTextBox.Text = result.IsSuccess ? result.Value : result.FailMessage;
 
-            var identityResult = await identities.ReadIdentityByEmail(_user.MailAddress);
+            var identityResult = await identities.ReadIdentityByEmail(searchEmail);
             if (identityResult.IsSuccess)
             {
                 _userIdentity = identityResult.Value;

@@ -12,16 +12,11 @@ namespace AzureDevOpsRESTClient
         public User[] Users { get; init; }
     }
 
-    internal class Users(RestClient restClient)
+    internal class GraphUsersService(RestClient restClient)
     {
-        public string ReadIdentities(string filter = "")
+        public string ReadIdentities()
         {
             var url = $"https://vssps.dev.azure.com/{restClient.OrgName}/_apis/graph/users?api-version=7.2-preview.1";
-
-            if (!string.IsNullOrWhiteSpace(filter))
-            {
-                url = url + $"$filter=mailAddress eq '{filter}'";
-            }
 
             var httpClient = restClient.GetHttpClient();
             using var response = httpClient.GetAsync(url).Result;
@@ -34,6 +29,25 @@ namespace AzureDevOpsRESTClient
             {
                 var responseBody = response.Content.ReadAsStringAsync().Result;
                 return $"Failed to connect: {response.ReasonPhrase}";
+            }
+        }
+
+        public async Task<Result<string>> Get(string userDescriptor)
+        {
+            var url = $"https://vssps.dev.azure.com/{restClient.OrgName}" +
+                      $"/_apis/graph/users/{userDescriptor}?api-version=7.1-preview.1";
+
+            var httpClient = restClient.GetHttpClient();
+            using var response = await httpClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                return Result.CreateSuccess(JToken.Parse(json).ToString(Formatting.Indented));
+            }
+            else
+            {
+                var responseBody = await response.Content.ReadAsStringAsync();
+                return Result.CreateFail<string>($"Failed to connect: {response.ReasonPhrase}");
             }
         }
     }

@@ -36,6 +36,7 @@
             userEntitlementsTabPage = new TabPage();
             userEntitlementsTextBox = new TextBox();
             accessControlListsTabPage = new TabPage();
+            tableLayoutPanel1 = new TableLayoutPanel();
             securityNamespacesSfDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             accessControlListTextBox = new TextBox();
             LoadAccessControlListButton = new Button();
@@ -44,6 +45,7 @@
             membershipsTabPage.SuspendLayout();
             userEntitlementsTabPage.SuspendLayout();
             accessControlListsTabPage.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)securityNamespacesSfDataGrid).BeginInit();
             SuspendLayout();
             // 
@@ -127,8 +129,7 @@
             // accessControlListsTabPage
             // 
             accessControlListsTabPage.BackColor = Color.LightGray;
-            accessControlListsTabPage.Controls.Add(securityNamespacesSfDataGrid);
-            accessControlListsTabPage.Controls.Add(accessControlListTextBox);
+            accessControlListsTabPage.Controls.Add(tableLayoutPanel1);
             accessControlListsTabPage.Controls.Add(LoadAccessControlListButton);
             accessControlListsTabPage.Location = new Point(4, 24);
             accessControlListsTabPage.Name = "accessControlListsTabPage";
@@ -136,21 +137,36 @@
             accessControlListsTabPage.TabIndex = 3;
             accessControlListsTabPage.Text = "AccessControlLists";
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(securityNamespacesSfDataGrid, 0, 0);
+            tableLayoutPanel1.Controls.Add(accessControlListTextBox, 0, 1);
+            tableLayoutPanel1.Location = new Point(6, 32);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(756, 348);
+            tableLayoutPanel1.TabIndex = 3;
+            // 
             // securityNamespacesSfDataGrid
             // 
             securityNamespacesSfDataGrid.AccessibleName = "Table";
             securityNamespacesSfDataGrid.AllowEditing = false;
             securityNamespacesSfDataGrid.AllowFiltering = true;
-            securityNamespacesSfDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             securityNamespacesSfDataGrid.AutoGenerateRelations = true;
             securityNamespacesSfDataGrid.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.AllCells;
+            securityNamespacesSfDataGrid.Dock = DockStyle.Fill;
             securityNamespacesSfDataGrid.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            securityNamespacesSfDataGrid.Location = new Point(6, 42);
+            securityNamespacesSfDataGrid.Location = new Point(3, 3);
             securityNamespacesSfDataGrid.Name = "securityNamespacesSfDataGrid";
             securityNamespacesSfDataGrid.ShowBusyIndicator = true;
             securityNamespacesSfDataGrid.ShowRowHeader = true;
             securityNamespacesSfDataGrid.ShowSortNumbers = true;
-            securityNamespacesSfDataGrid.Size = new Size(756, 109);
+            securityNamespacesSfDataGrid.Size = new Size(750, 168);
             securityNamespacesSfDataGrid.Style.BorderColor = Color.FromArgb(100, 100, 100);
             securityNamespacesSfDataGrid.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
             securityNamespacesSfDataGrid.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
@@ -164,19 +180,18 @@
             // 
             // accessControlListTextBox
             // 
-            accessControlListTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            accessControlListTextBox.Dock = DockStyle.Fill;
             accessControlListTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            accessControlListTextBox.Location = new Point(6, 157);
-            accessControlListTextBox.Margin = new Padding(6, 3, 6, 6);
+            accessControlListTextBox.Location = new Point(3, 177);
             accessControlListTextBox.Multiline = true;
             accessControlListTextBox.Name = "accessControlListTextBox";
             accessControlListTextBox.ScrollBars = ScrollBars.Both;
-            accessControlListTextBox.Size = new Size(756, 220);
+            accessControlListTextBox.Size = new Size(750, 168);
             accessControlListTextBox.TabIndex = 1;
             // 
             // LoadAccessControlListButton
             // 
-            LoadAccessControlListButton.Location = new Point(3, 3);
+            LoadAccessControlListButton.Location = new Point(9, 6);
             LoadAccessControlListButton.Name = "LoadAccessControlListButton";
             LoadAccessControlListButton.Size = new Size(164, 23);
             LoadAccessControlListButton.TabIndex = 0;
@@ -201,7 +216,8 @@
             userEntitlementsTabPage.ResumeLayout(false);
             userEntitlementsTabPage.PerformLayout();
             accessControlListsTabPage.ResumeLayout(false);
-            accessControlListsTabPage.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)securityNamespacesSfDataGrid).EndInit();
             ResumeLayout(false);
         }
@@ -219,5 +235,6 @@
         private Button LoadAccessControlListButton;
         private TextBox accessControlListTextBox;
         private Syncfusion.WinForms.DataGrid.SfDataGrid securityNamespacesSfDataGrid;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

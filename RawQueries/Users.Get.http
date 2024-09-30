@@ -1,0 +1,2 @@
+GET https://vssps.dev.azure.com/{organization}/_apis/graph/users/aad.OWI3MWYyMTYtNGM0Zi03Yjc0LWE5MTEtZWZiMGZhOWM3Nzdm?api-version=7.1-preview.1
+Authorization: Basic :PAT

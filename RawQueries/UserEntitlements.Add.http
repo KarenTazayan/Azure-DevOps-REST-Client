@@ -1,0 +1,16 @@
+POST https://vsaex.dev.azure.com/{organization}/_apis/userentitlements?api-version=7.2-preview.4
+Authorization: Basic :PAT
+Content-Type: application/json
+
+{
+    "accessLevel": {
+    "licensingSource": "account",
+    "accountLicenseType": "express"
+  },
+  "user": {
+    "principalName": "",
+    "descriptor": "",
+    "originId": "",
+    "subjectKind": "user"
+  }
+}

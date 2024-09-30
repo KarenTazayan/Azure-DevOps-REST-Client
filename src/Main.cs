@@ -13,6 +13,12 @@ namespace AzureDevOpsRESTClient
 
         private async void loginButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(orgNameTextBox.Text) || string.IsNullOrWhiteSpace(patTextBox.Text))
+            {
+                MessageBox.Show(@"Organisation name and PAT are required.");
+                return;
+            }
+
             _restClient = new RestClient(orgNameTextBox.Text, patTextBox.Text);
             var projects = new Projects(_restClient!);
             var result = await projects.GetAll();
@@ -30,8 +36,8 @@ namespace AzureDevOpsRESTClient
 
         private void readIdentitiesButton_Click(object sender, EventArgs e)
         {
-            var users = new Users(_restClient!);
-            var identities = users.ReadIdentities(userFilterTextBox.Text);
+            var users = new GraphUsersService(_restClient!);
+            var identities = users.ReadIdentities();
             consoleTextBox.Text = identities;
         }
 
@@ -61,7 +67,7 @@ namespace AzureDevOpsRESTClient
         {
             var dataGridView = (DataGridView)sender;
             var user = (User)dataGridView.Rows[e.RowIndex].DataBoundItem;
-            var userForm = new UserForm(user, _restClient!);
+            var userForm = new UserForm(user, _restClient!, userServicePrincipalCheckBox.CheckState == CheckState.Checked);
             userForm.Show();
         }
 
@@ -69,6 +75,18 @@ namespace AzureDevOpsRESTClient
         {
             var form = new SecurityNamespacesForm(_restClient!);
             form.Show();
+        }
+
+        private async void createNewUserWithOriginIdButton_Click(object sender, EventArgs e)
+        {
+            var userEntitlementsForm = new UserEntitlementsForm(_restClient!);
+            userEntitlementsForm.Show();
+        }
+
+        private void advancedSearchButton_Click(object sender, EventArgs e)
+        {
+            var usersSearchForm = new UsersSearchForm(_restClient!);
+            usersSearchForm.Show();
         }
     }
 }

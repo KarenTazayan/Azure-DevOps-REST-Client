@@ -1,0 +1,3 @@
+GET https://vssps.dev.azure.com/{organization}/_apis/identities?descriptors=aad.OWI3MWYyMTYtNGM0Zi03Yjc0LWE5MTEtZWZiMGZhOWM3Nzdm&queryMembership=expanded&api-version=7.2-preview.1
+Authorization: Basic :PAT
+
