@@ -34,14 +34,14 @@ namespace AzureDevOpsRESTClient
             }
         }
 
-        private void readIdentitiesButton_Click(object sender, EventArgs e)
+        private async void readIdentitiesButton_Click(object sender, EventArgs e)
         {
             var users = new GraphUsersService(_restClient!);
-            var identities = users.ReadIdentities();
+            var identities = await users.ReadIdentities();
             consoleTextBox.Text = identities;
         }
 
-        private void readUserByFilterButton_Click(object sender, EventArgs e)
+        private async void readUserByFilterButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(userFilterTextBox.Text))
             {
@@ -50,17 +50,18 @@ namespace AzureDevOpsRESTClient
             }
 
             var subjectQuery = new SubjectQuery(_restClient!);
-            var identities = subjectQuery.Get(userFilterTextBox.Text);
+            var identities = await subjectQuery.Get(userFilterTextBox.Text);
 
             if (!identities.IsSuccess)
             {
                 MessageBox.Show(identities.FailMessage);
             }
-
-            consoleTextBox.Text = identities.Value;
-
-            var usersResponse = JsonConvert.DeserializeObject<UsersResponse>(identities.Value);
-            usersDataGridView.DataSource = usersResponse!.Users;
+            else
+            {
+                consoleTextBox.Text = identities.Value;
+                var usersResponse = JsonConvert.DeserializeObject<UsersResponse>(identities.Value);
+                usersDataGridView.DataSource = usersResponse!.Users;
+            }
         }
 
         private void usersDataGridView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -77,7 +78,7 @@ namespace AzureDevOpsRESTClient
             form.Show();
         }
 
-        private async void createNewUserWithOriginIdButton_Click(object sender, EventArgs e)
+        private void createNewUserWithOriginIdButton_Click(object sender, EventArgs e)
         {
             var userEntitlementsForm = new UserEntitlementsForm(_restClient!);
             userEntitlementsForm.Show();

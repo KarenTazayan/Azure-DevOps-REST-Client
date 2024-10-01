@@ -66,7 +66,6 @@
             patTextBox.PasswordChar = '*';
             patTextBox.Size = new Size(215, 23);
             patTextBox.TabIndex = 1;
-            patTextBox.Text = "PAT";
             // 
             // orgNameTextBox
             // 
@@ -74,7 +73,6 @@
             orgNameTextBox.Name = "orgNameTextBox";
             orgNameTextBox.Size = new Size(215, 23);
             orgNameTextBox.TabIndex = 2;
-            orgNameTextBox.Text = "{organization}";
             // 
             // patLabel
             // 

@@ -1,20 +1,20 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
+
 namespace AzureDevOpsRESTClient
 {
-    public record SecurityNamespaces
+    public record SecurityNamespaces(SecurityNamespace[] Value)
     {
         public int Count { get; init; }
-
-        public SecurityNamespace[] Value { get; init; }
     }
 
     internal class SecurityNamespacesService(RestClient restClient)
     {
         public async Task<Result<string>> GetAllAsString()
         {
-            var url = $"https://dev.azure.com/{restClient.OrgName}/_apis/securitynamespaces?api-version=7.2-preview.1";
+            var url = $"https://dev.azure.com/{restClient.OrgName}/_apis/securitynamespaces?{ApiVersion}";
 
             var httpClient = restClient.GetHttpClient();
             using var response = await httpClient.GetAsync(url);

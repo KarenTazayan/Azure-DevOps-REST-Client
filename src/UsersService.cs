@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 
+using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
+
 namespace AzureDevOpsRESTClient
 {
     internal class UsersService(RestClient restClient)
@@ -8,7 +10,7 @@ namespace AzureDevOpsRESTClient
         {
             if(string.IsNullOrWhiteSpace(originId)) return Result.CreateFail<User>("OriginId is required.");
 
-            var url = $"https://vssps.dev.azure.com/{restClient.OrgName}/_apis/graph/users?api-version=7.1-preview.1";
+            var url = $"https://vssps.dev.azure.com/{restClient.OrgName}/_apis/graph/users?{ApiVersion}";
             var httpClient = restClient.GetHttpClient();
 
             // 'aad' for Azure Active Directory, or 'vsts' for local users

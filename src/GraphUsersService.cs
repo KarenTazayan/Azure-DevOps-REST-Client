@@ -2,32 +2,31 @@
 using Newtonsoft.Json.Linq;
 using Formatting = Newtonsoft.Json.Formatting;
 
+using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
+
 namespace AzureDevOpsRESTClient
 {
-    internal record UsersResponse
+    internal record UsersResponse([property: JsonProperty("value")] User[] Users)
     {
         public int Count { get; init; }
-
-        [JsonProperty("value")]
-        public User[] Users { get; init; }
     }
 
     internal class GraphUsersService(RestClient restClient)
     {
-        public string ReadIdentities()
+        public async Task<string> ReadIdentities()
         {
-            var url = $"https://vssps.dev.azure.com/{restClient.OrgName}/_apis/graph/users?api-version=7.2-preview.1";
+            var url = $"https://vssps.dev.azure.com/{restClient.OrgName}/_apis/graph/users?{ApiVersion}";
 
             var httpClient = restClient.GetHttpClient();
-            using var response = httpClient.GetAsync(url).Result;
+            using var response =  await httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                var json = response.Content.ReadAsStringAsync().Result; 
+                var json = await response.Content.ReadAsStringAsync(); 
                 return JToken.Parse(json).ToString(Formatting.Indented);
             }
             else
             {
-                var responseBody = response.Content.ReadAsStringAsync().Result;
+                var responseBody = await response.Content.ReadAsStringAsync();
                 return $"Failed to connect: {response.ReasonPhrase}";
             }
         }
@@ -35,7 +34,7 @@ namespace AzureDevOpsRESTClient
         public async Task<Result<string>> Get(string userDescriptor)
         {
             var url = $"https://vssps.dev.azure.com/{restClient.OrgName}" +
-                      $"/_apis/graph/users/{userDescriptor}?api-version=7.1-preview.1";
+                      $"/_apis/graph/users/{userDescriptor}?{ApiVersion}";
 
             var httpClient = restClient.GetHttpClient();
             using var response = await httpClient.GetAsync(url);

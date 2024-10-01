@@ -1,10 +1,7 @@
 ﻿namespace AzureDevOpsRESTClient
 {
-    public record SecurityNamespaceAction
+    public record SecurityNamespaceAction(string Name, string DisplayName, string NamespaceId)
     {
         public int Bit { get; init; }
-        public string Name { get; init; }
-        public string DisplayName { get; init; }
-        public string NamespaceId { get; init; }
     }
 }

@@ -11,13 +11,13 @@ public class Result
     [JsonConstructor]
     protected Result(bool isSuccess, string failMessage)
     {
-        if (isSuccess && failMessage != null || !isSuccess && failMessage == null)
+        if (isSuccess && !string.IsNullOrEmpty(failMessage) || !isSuccess && failMessage == string.Empty)
         {
             throw new InvalidOperationException($"Can't initialize an instance of {nameof(Result)} type.");
         }
 
         IsSuccess = isSuccess;
-        FailMessage = failMessage;
+        FailMessage = failMessage!;
     }
 
     public static Result CreateFail(string failMessage)
@@ -32,11 +32,11 @@ public class Result
 
     public static Result CreateSuccess()
     {
-        return new Result(true, null);
+        return new Result(true, string.Empty);
     }
 
     public static Result<T> CreateSuccess<T>(T value)
     {
-        return new Result<T>(value, true, null);
+        return new Result<T>(value, true, string.Empty);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
+
 namespace AzureDevOpsRESTClient
 {
     internal class UserEntitlementsService(RestClient restClient)
@@ -8,25 +10,25 @@ namespace AzureDevOpsRESTClient
         public async Task<Result<string>> GetAll(string userId)
         {
             var url = $"https://vsaex.dev.azure.com/{restClient.OrgName}/_apis/userentitlements/{userId}" +
-                      "?api-version=7.2-preview.4";
+                      $"?{ApiVersion}";
 
             var httpClient = restClient.GetHttpClient();
             using var response = await httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                var json = response.Content.ReadAsStringAsync().Result;
+                var json = await response.Content.ReadAsStringAsync();
                 return Result.CreateSuccess(JToken.Parse(json).ToString(Formatting.Indented));
             }
             else
             {
-                var responseBody = response.Content.ReadAsStringAsync().Result;
+                var responseBody = await response.Content.ReadAsStringAsync();
                 return Result.CreateFail<string>($"Failed to connect: {response.ReasonPhrase}");
             }
         }
 
         public async Task<Result<string>> Add(string originId, string descriptor)
         {
-            var url = $"https://vsaex.dev.azure.com/{restClient.OrgName}/_apis/userentitlements?api-version=7.2-preview.4";
+            var url = $"https://vsaex.dev.azure.com/{restClient.OrgName}/_apis/userentitlements?{ApiVersion}";
             var httpClient = restClient.GetHttpClient();
 
             var body = $$"""
@@ -60,7 +62,7 @@ namespace AzureDevOpsRESTClient
 
         public async Task<Result<string>> Add(string requestBody)
         {
-            var url = $"https://vsaex.dev.azure.com/{restClient.OrgName}/_apis/userentitlements?api-version=7.2-preview.4";
+            var url = $"https://vsaex.dev.azure.com/{restClient.OrgName}/_apis/userentitlements?{ApiVersion}";
             var httpClient = restClient.GetHttpClient();
 
             var content = new StringContent(requestBody, System.Text.Encoding.UTF8, "application/json");
@@ -81,7 +83,7 @@ namespace AzureDevOpsRESTClient
         public async Task<Result<string>> Search(string filter)
         {
             var url = $"https://vsaex.dev.azure.com/{restClient.OrgName}" +
-                      $"/_apis/userentitlements?$filter=name eq '{filter}'&api-version=7.1";
+                      $"/_apis/userentitlements?$filter=name eq '{filter}'&{ApiVersion}";
 
             var httpClient = restClient.GetHttpClient();
             using var response = await httpClient.GetAsync(url);

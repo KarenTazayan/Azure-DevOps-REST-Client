@@ -6,10 +6,10 @@
 
         private readonly SearchType[] _searchTypes = new[]
         {
-            new SearchType {Id = 0, Text = SearchType.Descriptor},
-            new SearchType {Id = 1, Text = SearchType.UserEntitlements},
-            new SearchType {Id = 2, Text = SearchType.UserPrincipal},
-            new SearchType {Id = 3, Text = SearchType.Email}
+            new SearchType (0,SearchType.Descriptor),
+            new SearchType (1, SearchType.UserEntitlements),
+            new SearchType (2, SearchType.UserPrincipal),
+            new SearchType (3, SearchType.Email)
         };
 
         public UsersSearchForm(RestClient restClient)
@@ -20,15 +20,12 @@
             searchTypesComboBox.DisplayMember = nameof(SearchType.Text);
         }
 
-        private record SearchType
+        private record SearchType(int Id, string Text)
         {
             public const string Descriptor = "Descriptor";
             public const string UserPrincipal = "User Principal";
             public const string Email = "Email";
             public const string UserEntitlements = "UserEntitlements";
-
-            public int Id { get; init; }
-            public string Text { get; init; }
         }
 
         private async void searchButton_Click(object sender, EventArgs e)

@@ -1,13 +1,15 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
+
 namespace AzureDevOpsRESTClient
 {
     internal class Projects(RestClient restClient)
     {
         public async Task<Result<string>> GetAll()
         {
-            var url = $"https://dev.azure.com/{restClient.OrgName}/_apis/projects?api-version=7.1";
+            var url = $"https://dev.azure.com/{restClient.OrgName}/_apis/projects?{ApiVersion}";
 
             var httpClient = restClient.GetHttpClient();
             using var response = await httpClient.GetAsync(url);
