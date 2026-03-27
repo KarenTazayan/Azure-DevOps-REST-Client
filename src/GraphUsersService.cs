@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Formatting = Newtonsoft.Json.Formatting;
 
 using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
+using AzureDevOpsRESTClient.Common;
 
 namespace AzureDevOpsRESTClient
 {

@@ -1,4 +1,6 @@
-﻿namespace AzureDevOpsRESTClient
+﻿using AzureDevOpsRESTClient.Common;
+
+namespace AzureDevOpsRESTClient
 {
     public partial class UsersSearchForm : Form
     {

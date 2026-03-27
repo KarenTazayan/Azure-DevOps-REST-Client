@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AzureDevOpsRESTClient.Common;
+using Newtonsoft.Json;
 
 using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
 

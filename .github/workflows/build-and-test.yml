@@ -24,3 +24,20 @@ jobs:
 
       - name: Build
         run: dotnet build AzureDevOpsRestClient.slnx --no-restore --configuration Release
+
+      - name: Publish AzureDevOpsRestClient
+        run: >
+          dotnet publish ./src/AzureDevOpsRestClient.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -o ./publish
+        env:
+          SYNCFUSION_LICENSE_KEY: ${{ secrets.SYNCFUSION_LICENSE_KEY }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AzureDevOpsRestClient-win-x64
+          path: ./publish

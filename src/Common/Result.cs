@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AzureDevOpsRESTClient;
+namespace AzureDevOpsRESTClient.Common;
 
 public class Result
 {

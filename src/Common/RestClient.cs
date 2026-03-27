@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 
-namespace AzureDevOpsRESTClient;
+namespace AzureDevOpsRESTClient.Common;
 
 public class RestClient(string orgName, string personalAccessToken)
 {
