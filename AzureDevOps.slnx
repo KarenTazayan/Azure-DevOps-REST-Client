@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AzureDevOpsRESTClient/AzureDevOpsRESTClient.csproj" />
+  </Folder>
+  <Folder Name="/src/AzureDevOpsWebHooks/">
+    <Project Path="src/AzureDevOpsWebHooks/WebApp.csproj" />
+  </Folder>
+  <Folder Name="/src/RawQueries/">
+    <File Path="src/RawQueries/AccessControlLists.http" />
+    <File Path="src/RawQueries/Identities.ReadIdentities.ByEmail.http" />
+    <File Path="src/RawQueries/Identities.ReadIdentities.ById.http" />
+    <File Path="src/RawQueries/MembershipStates.http" />
+    <File Path="src/RawQueries/Permissions.HasPermissions.http" />
+    <File Path="src/RawQueries/PermissionsReport.Create.http" />
+    <File Path="src/RawQueries/Projects.http" />
+    <File Path="src/RawQueries/Roledefinitions.http" />
+    <File Path="src/RawQueries/SecurityNamespaces.http" />
+    <File Path="src/RawQueries/UserEntitlements.Add.http" />
+    <File Path="src/RawQueries/UserEntitlements.Search.http" />
+    <File Path="src/RawQueries/Users.Create.http" />
+    <File Path="src/RawQueries/Users.Delete.http" />
+    <File Path="src/RawQueries/Users.Get.http" />
+    <File Path="src/RawQueries/Users.Update.http" />
+  </Folder>
+</Solution>
