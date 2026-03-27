@@ -1,15 +1,15 @@
-@WebApp_HostAddress = https://dev.azure.com/devops-workshop-6
+@WebApp_HostAddress = https://dev.azure.com/{organization-name}
 
 POST {{WebApp_HostAddress}}/_apis/accesscontrolentries/2e9eb7ed-3c0a-47d4-87c1-0ffdd275fd87?api-version=7.1
-Authorization: Basic OkNCZ2xibkhwSEI4RVo1SGl3c280dmVWRWplUHVCZGFZT2thMndjcFUwM1JOSDZoYlJsTFBKUVFKOTlDQ0FDQUFBQUF2V05TZUFBQVNBWkRPbkRRUw==
+Authorization: Basic {Token}
 Content-Type: application/json
 
 {
-  "token": "repoV2/6581ef7a-e894-4869-bb27-fba0d69329b5/f6e38daf-8a0b-4a8c-8657-08f30e3cefaf",
+  "token": "repoV2/{projectId}/{repositoryId}",
   "merge": false,
   "accessControlEntries": [
     {
-      "descriptor": "Microsoft.IdentityModel.Claims.ClaimsIdentity;afc21cfe-84df-486a-96d6-95e1c0f558bc\\AdeleV@65v223.onmicrosoft.com",
+      "descriptor": "Microsoft.IdentityModel.Claims.ClaimsIdentity;{id}\\AdeleV@xxx.onmicrosoft.com",
       "allow": 0,
       "deny": 512
     }
