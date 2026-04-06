@@ -1,6 +1,5 @@
-﻿namespace WebApp.EventTypes.GitRepoCreated
+﻿namespace WebApp.EventTypes.GitRepoCreated;
+
+public class GitRepoCreatedEventHandler
 {
-  public class GitRepoCreatedEventHandler
-  {
-  }
 }
