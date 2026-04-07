@@ -22,8 +22,14 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore AzureDevOps.slnx
 
-      - name: Build
+      - name: Build AzureDevOps.slnx
         run: dotnet build AzureDevOps.slnx --no-restore --configuration Release
+
+      - name: Run AzureDevOps.slnx tests
+        run: dotnet test AzureDevOps.slnx --no-build --configuration Release --logger "trx;LogFileName=test_results.trx"
+        env:
+          AZURE_DEV_OPS_ORGANISATION_NAME: ${{ secrets.AZURE_DEV_OPS_ORGANISATION_NAME }}
+          AZURE_DEV_OPS_PERSONAL_ACCESS_TOKEN: ${{ secrets.AZURE_DEV_OPS_PERSONAL_ACCESS_TOKEN }}
 
       - name: Publish AzureDevOpsRestClient
         run: >

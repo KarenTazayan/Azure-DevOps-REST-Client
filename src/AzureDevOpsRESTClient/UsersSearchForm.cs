@@ -6,13 +6,13 @@ public partial class UsersSearchForm : Form
 {
   private readonly RestClient _restClient;
 
-  private readonly SearchType[] _searchTypes = new[]
-  {
-    new SearchType (0,SearchType.Descriptor),
-    new SearchType (1, SearchType.UserEntitlements),
-    new SearchType (2, SearchType.UserPrincipal),
-    new SearchType (3, SearchType.Email)
-  };
+  private readonly SearchType[] _searchTypes =
+  [
+    new(0,SearchType.Descriptor),
+    new(1, SearchType.UserEntitlements),
+    new(2, SearchType.UserPrincipal),
+    new(3, SearchType.Email)
+  ];
 
   public UsersSearchForm(RestClient restClient)
   {
@@ -30,7 +30,13 @@ public partial class UsersSearchForm : Form
     public const string UserEntitlements = "UserEntitlements";
   }
 
+  // ReSharper disable once AsyncVoidEventHandlerMethod
   private async void searchButton_Click(object sender, EventArgs e)
+  {
+    await HandleEventAsync(SearchButtonClickAsync);
+  }
+
+  private async Task SearchButtonClickAsync()
   {
     if (searchTypesComboBox.SelectedValue is SearchType { Text: SearchType.Descriptor })
     {

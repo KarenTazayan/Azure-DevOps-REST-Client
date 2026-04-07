@@ -7,12 +7,12 @@ using AzureDevOpsRESTClient.Common;
 
 namespace AzureDevOpsRESTClient;
 
-internal record UsersResponse([property: JsonProperty("value")] User[] Users)
+public record UsersResponse([property: JsonProperty("value")] User[] Users)
 {
   public int Count { get; init; }
 }
 
-internal class GraphUsersService(RestClient restClient)
+public class GraphUsersService(RestClient restClient)
 {
   public async Task<string> ReadIdentities()
   {

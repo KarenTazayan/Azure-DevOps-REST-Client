@@ -6,7 +6,7 @@ using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
 
 namespace AzureDevOpsRESTClient;
 
-internal class Memberships(RestClient restClient)
+public class Memberships(RestClient restClient)
 {
   public async Task<Result<string>> GetAllMemberships(string subjectDescriptor)
   {

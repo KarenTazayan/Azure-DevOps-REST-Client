@@ -1,13 +1,6 @@
-﻿using AzureDevOpsRESTClient.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿global using static AzureDevOpsRESTClient.Extensions;
+
+using AzureDevOpsRESTClient.Common;
 
 namespace AzureDevOpsRESTClient;
 
@@ -21,18 +14,17 @@ public partial class SecurityNamespacesForm : Form
     InitializeComponent();
   }
 
+  // ReSharper disable once AsyncVoidEventHandlerMethod
   private async void SecurityNamespacesForm_Load(object sender, EventArgs e)
+  {
+    await HandleEventAsync(SecurityNamespacesFormLoadAsync);
+  }
+
+  private async Task SecurityNamespacesFormLoadAsync()
   {
     var securityNamespaces = new SecurityNamespacesService(_restClient!);
     var namespaces = await securityNamespaces.GetAllAsString();
 
-    if (namespaces.IsSuccess)
-    {
-      securityNamespacesTextBox.Text = namespaces.Value;
-    }
-    else
-    {
-      securityNamespacesTextBox.Text = namespaces.FailMessage;
-    }
+    securityNamespacesTextBox.Text = namespaces.IsSuccess ? namespaces.Value : namespaces.FailMessage;
   }
 }

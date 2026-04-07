@@ -5,7 +5,7 @@ using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
 
 namespace AzureDevOpsRESTClient;
 
-internal class UsersService(RestClient restClient)
+public class UsersService(RestClient restClient)
 {
   public async Task<Result<User>> CreateNew(string originId)
   {

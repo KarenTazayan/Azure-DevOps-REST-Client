@@ -5,7 +5,7 @@ using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
 
 namespace AzureDevOpsRESTClient;
 
-internal class SubjectQuery(RestClient restClient)
+public class SubjectQuery(RestClient restClient)
 {
   public async Task<Result<string>> Get(string query)
   {

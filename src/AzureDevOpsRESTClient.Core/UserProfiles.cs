@@ -6,7 +6,7 @@ using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
 
 namespace AzureDevOpsRESTClient;
 
-internal class UserProfiles(RestClient restClient)
+public class UserProfiles(RestClient restClient)
 {
   public async Task<Result<string>> Get(string userId)
   {

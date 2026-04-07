@@ -1,4 +1,6 @@
-﻿using AzureDevOpsRESTClient.Common;
+﻿global using static AzureDevOpsRESTClient.Extensions;
+
+using AzureDevOpsRESTClient.Common;
 
 namespace AzureDevOpsRESTClient;
 
@@ -12,13 +14,26 @@ public partial class UserEntitlementsForm : Form
     InitializeComponent();
   }
 
+  // ReSharper disable once AsyncVoidEventHandlerMethod
   private async void addButton_Click(object sender, EventArgs e)
   {
+    await HandleEventAsync(AddButtonClickAsync);
+  }
+
+  private async Task AddButtonClickAsync()
+  {
     addButton.Enabled = false;
-    var userEntitlementsService = new UserEntitlementsService(_restClient!);
-    var userEntitlementsResult = await userEntitlementsService.Add(inputTextBox.Text);
-    outputTextBox.Text = userEntitlementsResult.IsSuccess ?
-      userEntitlementsResult.Value : userEntitlementsResult.FailMessage;
-    addButton.Enabled = true;
+    try
+    {
+      var userEntitlementsService = new UserEntitlementsService(_restClient!);
+      var userEntitlementsResult = await userEntitlementsService.Add(inputTextBox.Text);
+      outputTextBox.Text = userEntitlementsResult.IsSuccess
+        ? userEntitlementsResult.Value
+        : userEntitlementsResult.FailMessage;
+    }
+    finally
+    {
+      addButton.Enabled = true;
+    }
   }
 }

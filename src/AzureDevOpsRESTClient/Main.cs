@@ -1,3 +1,5 @@
+global using static AzureDevOpsRESTClient.Extensions;
+
 using AzureDevOpsRESTClient.Common;
 using Newtonsoft.Json;
 
@@ -12,7 +14,26 @@ public partial class Main : Form
     InitializeComponent();
   }
 
+  // ReSharper disable once AsyncVoidEventHandlerMethod
   private async void loginButton_Click(object sender, EventArgs e)
+  {
+    await HandleEventAsync(LoginButtonClickAsync);
+
+  }
+
+  // ReSharper disable once AsyncVoidEventHandlerMethod
+  private async void readIdentitiesButton_Click(object sender, EventArgs e)
+  {
+    await HandleEventAsync(ReadIdentitiesButtonClickAsync);
+  }
+
+  // ReSharper disable once AsyncVoidEventHandlerMethod
+  private async void readUserByFilterButton_Click(object sender, EventArgs e)
+  {
+    await HandleEventAsync(ReadUserByFilterButtonClickAsync);
+  }
+
+  private async Task LoginButtonClickAsync()
   {
     if (string.IsNullOrWhiteSpace(orgNameTextBox.Text) || string.IsNullOrWhiteSpace(patTextBox.Text))
     {
@@ -35,14 +56,14 @@ public partial class Main : Form
     }
   }
 
-  private async void readIdentitiesButton_Click(object sender, EventArgs e)
+  private async Task ReadIdentitiesButtonClickAsync()
   {
     var users = new GraphUsersService(_restClient!);
     var identities = await users.ReadIdentities();
     consoleTextBox.Text = identities;
   }
 
-  private async void readUserByFilterButton_Click(object sender, EventArgs e)
+  private async Task ReadUserByFilterButtonClickAsync()
   {
     if (string.IsNullOrWhiteSpace(userFilterTextBox.Text))
     {

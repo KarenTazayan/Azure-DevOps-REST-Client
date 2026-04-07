@@ -11,7 +11,7 @@ public record SecurityNamespaces(SecurityNamespace[] Value)
   public int Count { get; init; }
 }
 
-internal class SecurityNamespacesService(RestClient restClient)
+public class SecurityNamespacesService(RestClient restClient)
 {
   public async Task<Result<string>> GetAllAsString()
   {

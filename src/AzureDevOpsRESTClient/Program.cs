@@ -13,7 +13,7 @@ internal static class Program
     var license = Environment.GetEnvironmentVariable("SYNCFUSION_LICENSE_KEY");
 
     SyncfusionLicenseProvider.RegisterLicense(license);
-    
+
     // To customize application configuration such as set high DPI settings or default font,
     // see https://aka.ms/applicationconfiguration.
     ApplicationConfiguration.Initialize();

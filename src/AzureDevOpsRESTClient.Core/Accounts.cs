@@ -6,11 +6,11 @@ using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
 
 namespace AzureDevOpsRESTClient;
 
-internal class Projects(RestClient restClient)
+public class Accounts(RestClient restClient)
 {
   public async Task<Result<string>> GetAll()
   {
-    var url = $"https://dev.azure.com/{restClient.OrgName}/_apis/projects?{ApiVersion}";
+    var url = $"https://app.vssps.visualstudio.com/_apis/accounts?{ApiVersion}";
 
     var httpClient = restClient.GetHttpClient();
     using var response = await httpClient.GetAsync(url);

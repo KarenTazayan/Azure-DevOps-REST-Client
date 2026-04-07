@@ -62,7 +62,6 @@
             userTabControl.Size = new Size(776, 411);
             userTabControl.SizeMode = TabSizeMode.FillToRight;
             userTabControl.TabIndex = 0;
-            userTabControl.SelectedIndexChanged += userTabControl_SelectedIndexChanged;
             // 
             // IdentityTabPage
             // 

@@ -6,7 +6,7 @@ using static AzureDevOpsRESTClient.AzureDevOpsRestApiGlobalConfig;
 
 namespace AzureDevOpsRESTClient;
 
-internal class UserEntitlementsService(RestClient restClient)
+public class UserEntitlementsService(RestClient restClient)
 {
   public async Task<Result<string>> GetAll(string userId)
   {

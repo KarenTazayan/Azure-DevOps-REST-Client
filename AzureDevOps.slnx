@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/AzureDevOpsRESTClient.Core/AzureDevOpsRESTClient.Core.csproj" Id="e15905db-3020-46ed-9faa-3f861288dd40" />
     <Project Path="src/AzureDevOpsRESTClient/AzureDevOpsRESTClient.csproj" />
   </Folder>
   <Folder Name="/src/AzureDevOpsWebHooks/">
@@ -21,5 +22,8 @@
     <File Path="src/RawQueries/Users.Delete.http" />
     <File Path="src/RawQueries/Users.Get.http" />
     <File Path="src/RawQueries/Users.Update.http" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/AzureDevOpsRESTClient.Tests/AzureDevOpsRESTClient.Tests.csproj" Id="aeced79b-627c-4dd6-9ec6-3350d074f72a" />
   </Folder>
 </Solution>
